@@ -8,7 +8,7 @@ class User extends Component {
           <div className="card card-default  mt-3">
             <div className="card-header d-flex justify-content-between">
               <h3>{name}</h3>
-              <i className="fas fa-trash" style = {{ fontSize:30}}></i>
+              <i className="fas fa-trash" style = {{ fontSize:30,cursor:"pointer"}}></i>
             </div>
             <div className="card-body">
               <h5>Your SurName: {SurName}</h5>
