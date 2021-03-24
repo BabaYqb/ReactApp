@@ -1,31 +1,54 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 class User extends Component {
-    render() {
-        const{name,SurName,Salary} = this.props
-        return (
-          <div className="card card-default  mt-3">
-            <div className="card-header d-flex justify-content-between">
-              <h3>{name}</h3>
-              <i className="fas fa-trash" style = {{ fontSize:30,cursor:"pointer"}}></i>
-            </div>
-            <div className="card-body">
-              <h5>Your SurName: {SurName}</h5>
-              <h5>Your Salary: {Salary}</h5>
-            </div>
+
+  onClickEvent = (e) => {
+    this.setState({
+      isVisible: !this.state.isVisible
+    });
+  }
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      isVisible: true,
+    };
+  }
+  render() {
+    const { name, surname, salary, id   } = this.props;
+    const { isVisible } = this.state;
+    return (
+      <div className="card card-default  mt-3">
+        <div className="card-header d-flex justify-content-between">
+          <h3 onClick={this.onClickEvent}>{name}</h3>
+          <i
+            className="fas fa-trash"
+            style={{ fontSize: 30, cursor: "pointer" }}
+          ></i>
+        </div>
+        {isVisible ? (
+          <div className="card-body">
+            <h5>Your ID: {id}</h5>
+            <h5>Your SurName: {surname}</h5>
+            <h5>Your Salary: {salary}</h5>
+            <p>{this.state.test}</p>
           </div>
-        );
-    }
+        ) : null}
+      </div>
+    );
+  }
 }
 User.propTypes = {
   name: PropTypes.string.isRequired,
-  SurName: PropTypes.string.isRequired,
-  Salary: PropTypes
+  surname: PropTypes.string.isRequired,
+  salary: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
 };
 User.defaultProps = {
   name: "No information",
-  SurName: "No Information",
-  Salary: "No Information",
+  surname: "No Information",
+  salary: "No Information",
+  id:"No Information"
 };
-export default User
+export default User;
