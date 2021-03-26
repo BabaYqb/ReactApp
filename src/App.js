@@ -32,7 +32,12 @@ class App extends Component {
         salary: 456,
       },
     ],
- };
+ }
+  deleteUser = (id) => {
+    this.setState({
+      Users:this.state.users.filter(user => id !== user.id )
+    })
+  }
   render(){
   return (
     <div className="App">
@@ -41,7 +46,7 @@ class App extends Component {
           <div className="jumbotron">
             <h1>{<Navbar title="App"></Navbar>}</h1>
             <h3>
-              <Users users={ this.state.users }></Users>
+              <Users deleteUser={this.deleteUser} users={ this.state.users }></Users>
            </h3>
            
           </div>

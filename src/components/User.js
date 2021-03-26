@@ -1,20 +1,25 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
+
 class User extends Component {
-
-  onClickEvent = (e) => {
-    this.setState({
-      isVisible: !this.state.isVisible
-    });
-  }
-
+  
   constructor(props) {
     super(props);
     this.state = {
       isVisible: true,
     };
   }
+  onClickEvent = (e) => {
+    this.setState({
+      isVisible: !this.state.isVisible
+    });
+  }
+  onDeleteUser = (e) => {
+    const { id, deleteUser } = this.props;
+    deleteUser(id)
+  }
+
   render() {
     const { name, surname, salary, id   } = this.props;
     const { isVisible } = this.state;
@@ -22,7 +27,7 @@ class User extends Component {
       <div className="card card-default  mt-3">
         <div className="card-header d-flex justify-content-between">
           <h3 onClick={this.onClickEvent}>{name}</h3>
-          <i
+          <i onClick={this.onDeleteUser}
             className="fas fa-trash"
             style={{ fontSize: 30, cursor: "pointer" }}
           ></i>
@@ -44,6 +49,7 @@ User.propTypes = {
   surname: PropTypes.string.isRequired,
   salary: PropTypes.string.isRequired,
   id: PropTypes.number.isRequired,
+  deleteUser: PropTypes.func.isRequired,
 };
 User.defaultProps = {
   name: "No information",
